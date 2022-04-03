@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：HTML5_Canvas_Star_type
+  File name(文件名): test1
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/4/3
+  Time(创建时间)： 20:55
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 2px solid skyblue;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400">
+    浏览器不支持画布功能
+</canvas>
+
+<script>
+    var c = document.getElementById("canvas");
+    var ctx1 = c.getContext("2d");
+
+    //绘制五角星，并填充为红色
+    drawStar(5, 50, 100, 50, "red", ctx1);
+    //绘制七角星，并填充为蓝色
+    drawStar(7, 140, 100, 50, "blue", ctx1);
+    //绘制九角星，并填充为绿色
+    drawStar(9, 240, 100, 50, "green", ctx1);
+
+    //绘制n角星的方法
+    function drawStar(n, dx, dy, size, color, ctx)
+    {
+        ctx.beginPath();
+        for (var i = 0; i < n; i++)
+        {
+            //转换弧度
+            var radians = Math.PI / n * 4 * i;
+            //计算下一个坐标位置
+            var x = Math.sin(radians) * size + dx;
+            var y = Math.cos(radians) * size + dy;
+            //绘制路径
+            ctx.lineTo(x, y);
+        }
+        //结束路径绘制
+        ctx.closePath();
+        //设置画笔颜色
+        ctx.fillStyle = color;
+        //为n角星填充颜色
+        ctx.fill();
+    }
+</script>
+</body>
+</html>
